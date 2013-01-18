@@ -1,0 +1,144 @@
+<!DOCTYPE html> 
+<html> 
+	<head> 
+	<title>地产项目</title>
+	<!--设定屏幕图标--> 
+	<link rel="apple-touch-icon-precomposed" href="image/logo.png"/>
+	<!--设定启动图片--> 
+	<link rel="apple-touch-startup-image" href="">
+	<!--设定进入离开本页面的特效--> 
+	<meta HTTP-EQUIV="Page-Enter" CONTENT="revealtrans(duration=6.0, transition=23)">
+	<meta HTTP-EQUIV="Page-Exit" CONTENT="revealtrans(duration=6.0, transition=23)">
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+	<!--固定屏幕大小--> 
+	<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0;user-scalable=no">
+	<!--设定文件编码--> 
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<!--不要将数字识别为电话号码-->
+	<meta content="telephone=no" name="format-detection" />
+	<!--竖屏状态下的css样式--> 
+	<link rel="stylesheet" media="all and (orientation:portrait)" href="portrait.css"> 
+	<!--横屏状态下的css样式-->        
+	<link rel="stylesheet" media="all and (orientation:landscape)" href="landscape.css">
+	<!--引入一个可以左右拖拉更换图片的js库--> 
+	<script type="text/javascript" src="js/jquery-latest.js"></script>
+	<script type="text/javascript" src="js/jquery.touchslider.min.js"></script>
+	<!--引入一个打字机效果的js库-->
+	<script type="text/javascript" src="js/jquery.ghosttype-1.2.js"></script>
+	<link rel="stylesheet" href="css/reset.css" media="screen" type="text/css" />
+	<link rel="stylesheet" href="css/threesixty.css" media="screen" type="text/css" />
+	<!--
+	<script type="text/javascript" src="720/pano2vr_player.js"></script>
+	 避免用户长按页面出现复制粘贴 -->
+	<style>
+		body{ -webkit-user-select: none; margin:0;}
+		.ipad{width: 1024px;height: 748px;position: absolute;top:0px;left:0px;background-color: blue;display: none}
+	</style>
+	<!--引入一个可以左右拖拉更换图片的js库的设置--> 
+	<script>
+		jQuery(function($) {
+			$(".touchslider").touchSlider({
+			container: this,
+			duration: 350, // the speed of the sliding animation in milliseconds
+			delay: 2000, // initial auto-scrolling delay for each loop
+			margin:0, // borders size. The margin is set in pixels.
+			mouseTouch: true,
+			namespace: "touchslider",
+			//next: ".touchslider-next", // jQuery object for the elements to which a "scroll forwards" action should be bound.
+			//pagination: ".touchslider-nav-item",
+			//currentClass: "touchslider-nav-item-current", // class name for current pagination item.
+			//prev: ".touchslider-prev", // jQuery object for the elements to which a "scroll backwards" action should be bound.
+			//scroller: viewport.children(),
+			autoplay: true, // whether to move from image to image automatically
+			viewport: ".touchslider-viewport"
+			});
+			//$(".touchslider").data("touchslider").stop(); // stop the slider
+			//$(".touchslider").data("touchslider").start(); // start the slider
+		});
+	</script>
+	<!--自动轮播图片的js设置--> 
+	<script type="text/javascript">
+			var i=1;
+			var lu="bus"; //文件名前缀
+			function islo(){
+				if(i<10){
+					$('#lunbo').attr("src","images/lunbo/"+lu+"0"+i+".jpg");
+					i++;
+				}
+				else if(i>9){
+					if (i<54){
+						$('#lunbo').attr('src',"images/lunbo/"+lu+""+i+".jpg");
+						i++;
+					}
+					else{
+						i=1;
+					}
+				}
+			}
+			window.setInterval("islo()",200);//轮播速度200毫秒
+	</script>
+	<!-- 监听拖动事件，避免用户拖动页面 -->
+    <Script type="text/javascript">
+     	document.addEventListener('touchmove', function(e){ e.preventDefault(); }, false);
+    </script>
+    <!-- 打字机效果 -->
+    <script type="text/javascript">
+	$(function(){
+		// 把 #ipad2 中的內容一個字一個字的打出來
+		$('#ipad').ghostType();
+		});
+	</script>
+    <!-- 侦测浏览器是否iPad，
+    <script type="text/javascript">
+		var d=window.innerHeight;
+		var f=navigator.userAgent.match(/iPad/i);
+		if (f=='iPad') {
+			if (d=='748'){
+			}
+			else {
+			window.open('tips.html','_self');
+			}
+		}
+		else{
+		window.open('tip.html','_self');
+		}
+	</script>
+	然后判断是否已经添加到桌面 -->
+	<body>
+		<div><!-- 若干图片左右拖动-->
+			<div class="touchslider">
+				<div class="touchslider-viewport" style="width:1024px;overflow:hidden;position:absolute;top:2048px;left:0px;height:748px">
+					<div class="touchslider-item"><img src="images/jintp01.jpg" width="1024" height="748" alt="Tree and cloud"></div>
+					<div class="touchslider-item"><img src="images/jintp02.jpg" width="1024" height="748" alt="Ekaterina smile"></div>
+					<div class="touchslider-item"><img src="images/jintp03.jpg" width="1024" height="748" alt="Dasha &amp; Masha"></div>
+				</div>
+			</div>
+		</div>
+		<div><!-- 六张图片拼成720度旋转-->
+		<script type="text/javascript" src="720/pano2vr_player.js"></script>
+			<script type="text/javascript">
+				// create panorama container 
+				document.writeln('<div id="container" style="width:1024px;height:748px;position:absolute;top:1024px;left:0px;" ></div>');
+				// create the panorama player with the container
+				pano=new pano2vrPlayer("container");
+				pano.readConfigUrl("720/360jinguan_out.xml");
+		</script>
+		</div>
+		<div id="ipad">
+			<h6>打字机效果，一个字一个字的打出来</h6>
+		</div>
+		<div><!-- 图片自动轮播-->
+			<img src="" id="lunbo" />
+		</div>
+		<div id="threesixty"><!-- 360旋转-->
+			<div id="spinner">
+				<span>0%</span>
+			</div>
+			<ol id="threesixty_images"></ol>
+		</div>
+	
+	<script src="js/heartcode-canvasloader-min.js"></script>
+	<script src="js/threesixty.js"></script>
+	</body>
+</html>
